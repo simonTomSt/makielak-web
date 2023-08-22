@@ -1,7 +1,22 @@
+const removeImports = require('next-remove-imports')();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
+  images: {
+    domains: ['rmdjufkjcuqrsfpacxhy.supabase.co'],
+    loader: 'custom',
+    loaderFile: './src/imageLoader.ts',
+  },
   async rewrites() {
     return [
+      {
+        source: '/',
+        destination: '/website',
+        locale: false, // Use `locale: false` so that the prefix matches the desired locale correctly
+      },
       {
         source: '/onas',
         destination: '/about',
@@ -31,4 +46,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = removeImports(nextConfig);
