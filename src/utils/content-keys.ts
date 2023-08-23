@@ -1,0 +1,30 @@
+export enum ContentKey {
+  HomeWelcome = 'HomeWelcome',
+  HomeAboutUs = 'HomeAboutUs',
+  HomeService1Title = 'HomeService1Title',
+  HomeService2Title = 'HomeService2Title',
+  HomeService3Title = 'HomeService3Title',
+  HomeService1 = 'HomeService1',
+  HomeService2 = 'HomeService2',
+  HomeService3 = 'HomeService3',
+  FooterEmail = 'FooterEmail',
+  FooterPhone = 'FooterPhone',
+  FooterAddress = 'FooterAddress',
+  FooterTitle = 'FooterTitle',
+  AboutUsFirst = 'AboutUsFirst',
+  AboutUsSecond = 'AboutUsSecond',
+  Services = 'Services',
+  Contact = 'Contact',
+  ContactEmail = 'ContactEmail',
+  ContactPhone = 'ContactPhone',
+  ContactAddress1 = 'ContactAddress1',
+  ContactAddress1Name = 'ContactAddress1Name',
+  ContactAddress2 = 'ContactAddress2',
+  ContactAddress2Name = 'ContactAddress2Name',
+}
+
+export enum ContentImagesKey {
+  HomeService1 = 'HomeService1',
+  HomeService2 = 'HomeService2',
+  HomeService3 = 'HomeService3',
+}
