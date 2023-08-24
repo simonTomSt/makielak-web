@@ -6,9 +6,3 @@ export const getAllCategories = cache(async () => {
 
   return apiClient.from('categories').select();
 });
-
-export const getCategoryImages = cache(async () => {
-  const apiClient = createSSRClient();
-
-  return apiClient.from('categories').select();
-});

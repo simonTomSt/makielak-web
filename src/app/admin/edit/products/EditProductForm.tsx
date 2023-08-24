@@ -16,30 +16,30 @@ import {
 } from '@/components';
 import { useMutation } from '@/utils';
 import { t } from '@/translations';
-import {
-  deleteCategory,
-  saveCategoryThumbImage,
-  updateCategory,
-} from '@/api/spa';
+import { deleteProduct, saveProductImage, updateProduct } from '@/api/spa';
 import { RowType } from '@/api';
 import { useState } from 'react';
+import { SelectCategoryModal } from '../categories/SelectCategoryModal';
+import { useCategoriesContext } from '@/utils/CategoriesContext';
 
-type EditCategoryFormProps = {
-  category: RowType<'categories'>;
-  categoryThumbImage?: RowType<'images'> | null;
+type EditProductFormProps = {
+  product: RowType<'products'>;
+  productCategory: RowType<'categories'> | null;
+  productImage?: RowType<'images'> | null;
 };
 
-type FormValues = Omit<
-  RowType<'categories'>,
-  'thumb_image' | 'background_image' | 'id'
->;
+type FormValues = Omit<RowType<'products'>, 'image' | 'id'>;
 
-const EditCategoryForm = ({
-  category,
-  categoryThumbImage,
-}: EditCategoryFormProps) => {
+const EditProductForm = ({
+  product,
+  productImage,
+  productCategory,
+}: EditProductFormProps) => {
   const router = useRouter();
+  const { categories } = useCategoriesContext();
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+  const [category, setCategory] = useState<RowType<'categories'>>();
 
   const { mutate, loading } = useMutation({
     onSuccess: () => {
@@ -59,43 +59,71 @@ const EditCategoryForm = ({
   });
 
   const handleSave = (formCategory: FormValues) => {
-    mutate(() => updateCategory({ id: category.id, ...formCategory }));
+    mutate(() =>
+      updateProduct({
+        id: product.id,
+        ...formCategory,
+        category_id: category?.id || null,
+      })
+    );
   };
 
   const handleThumbImageUpload = (uploadedImage: RowType<'images'>) => {
-    mutate(() => saveCategoryThumbImage(category.id, uploadedImage));
+    mutate(() => saveProductImage(product.id, uploadedImage));
   };
 
   const handleDelete = () => {
-    deleteMutate(() => deleteCategory(category.id));
+    deleteMutate(() => deleteProduct(product.id));
   };
 
   return (
     <div className='mb-1'>
       <Typography variant='h6' className='mb-2'>
-        {t.admin.edit.categories.edit_category}
+        {t.admin.edit.products.edit_product}
       </Typography>
       <Form<FormValues> onSubmit={handleSave}>
         <Input
-          label={t.admin.edit.categories.edit_title}
+          label={t.admin.edit.products.edit_title}
           name='name'
-          defaultValue={category.name || ''}
+          defaultValue={product.name || ''}
         />
         <br />
 
-        <Typography>{t.admin.edit.categories.edit_desc}</Typography>
+        <Typography>{t.admin.edit.products.edit_desc}</Typography>
         <ContentEditor
           name='description'
-          initialValue={category.description || ''}
-          height={100}
+          initialValue={product.description || ''}
+          height={300}
         />
 
         <div className='flex justify-between'>
           <FileUpload
-            label={t.admin.edit.categories.edit_thumbnail}
-            initialImage={categoryThumbImage?.url || undefined}
+            label={t.admin.edit.products.edit_thumbnail}
+            initialImage={productImage?.url || undefined}
             onFileSelect={handleThumbImageUpload}
           />
+        </div>
+
+        <div className='flex items-center'>
+          <Button
+            type='button'
+            size='sm'
+            className='my-4 mr-4'
+            variant='outlined'
+            disabled={loading}
+            onClick={() => setIsCategoryModalOpen(true)}
+          >
+            {t.admin.edit.products.select_category}
+          </Button>
+
+          {(category || productCategory) && (
+            <Typography>
+              {t.admin.edit.products.selected_category.replace(
+                '{categoryName}',
+                `${category?.name || productCategory?.name}`
+              )}
+            </Typography>
+          )}
         </div>
 
         <Button type='submit' className='mt-4' disabled={loading}>
@@ -112,16 +140,16 @@ const EditCategoryForm = ({
           variant='outlined'
           onClick={() => setIsDeleteOpen(true)}
         >
-          {t.admin.edit.categories.delete_category}
+          {t.admin.edit.products.delete_product}
         </Button>
       </div>
 
       <Dialog open={isDeleteOpen} handler={setIsDeleteOpen}>
         <DialogHeader>
-          {t.admin.edit.categories.delete_category_confirmation}
+          {t.admin.edit.products.delete_product_confirmation}
         </DialogHeader>
         <DialogBody>
-          {t.admin.edit.categories.delete_category_confirmation_body}
+          {t.admin.edit.products.delete_product_confirmation_body}
         </DialogBody>
         <DialogFooter>
           <Button
@@ -129,7 +157,7 @@ const EditCategoryForm = ({
             onClick={() => setIsDeleteOpen(false)}
             className='mr-1'
           >
-            <span>{t.admin.edit.categories.no_keep}</span>
+            <span>{t.admin.edit.products.no_keep}</span>
           </Button>
           <Button
             variant='text'
@@ -137,12 +165,19 @@ const EditCategoryForm = ({
             disabled={deleteLoading}
             onClick={handleDelete}
           >
-            <span>{t.admin.edit.categories.yes_delete}</span>
+            <span>{t.admin.edit.products.yes_delete}</span>
           </Button>
         </DialogFooter>
       </Dialog>
+
+      <SelectCategoryModal
+        categories={categories}
+        open={isCategoryModalOpen}
+        handler={setIsCategoryModalOpen}
+        onCategorySelect={(category) => setCategory(category)}
+      />
     </div>
   );
 };
 
-export default EditCategoryForm;
+export default EditProductForm;

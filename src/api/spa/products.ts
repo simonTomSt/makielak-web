@@ -1,30 +1,47 @@
 import { RowType } from '..';
 import { createSPAClient } from './apiClient';
+import { deleteImageById } from './storage';
 
 export const createProduct = async (
-  category: Omit<RowType<'categories'>, 'thumb_image' | 'background_image'>
+  product: Omit<RowType<'products'>, 'image' | 'id'>
 ) => {
   const apiClient = createSPAClient();
 
-  return apiClient.from('categories').insert(category);
+  return apiClient.from('products').insert(product);
 };
 
 export const updateProduct = async (
-  category: Omit<RowType<'categories'>, 'thumb_image' | 'background_image'>
+  product: Omit<RowType<'products'>, 'image'>
 ) => {
   const apiClient = createSPAClient();
 
-  return apiClient.from('categories').update(category).eq('id', category.id);
+  return apiClient.from('products').update(product).eq('id', product.id);
 };
 
-export const saveCategoryImage = async (
-  categoryId: string,
+export const saveProductImage = async (
+  productId: string,
   image: RowType<'images'>
 ) => {
   const apiClient = createSPAClient();
 
   return apiClient
-    .from('categories')
-    .update({ thumb_image: image.id })
-    .eq('id', categoryId);
+    .from('products')
+    .update({ image: image.id })
+    .eq('id', productId);
+};
+
+export const deleteProduct = async (productId: string) => {
+  const apiClient = createSPAClient();
+
+  const { data: productToDelete } = await apiClient
+    .from('products')
+    .select()
+    .eq('id', productId)
+    .single();
+
+  if (productToDelete?.image) {
+    await deleteImageById(productToDelete.image);
+  }
+
+  return apiClient.from('products').delete().eq('id', productId);
 };

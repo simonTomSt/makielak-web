@@ -124,7 +124,7 @@ export interface Database {
         Insert: {
           category_id?: string | null
           description?: string | null
-          id: string
+          id?: string
           image?: string | null
           name?: string | null
         }

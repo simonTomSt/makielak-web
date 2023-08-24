@@ -10,6 +10,12 @@ export const createCategory = async (
   return apiClient.from('categories').insert(category);
 };
 
+export const getCategoryById = async (id: string) => {
+  const apiClient = createSPAClient();
+
+  return apiClient.from('categories').select().eq('id', id).single();
+};
+
 export const updateCategory = async ({
   id,
   description,

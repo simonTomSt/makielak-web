@@ -66,7 +66,8 @@ export const pl = {
       },
       categories: {
         title: 'Edytuj kategorie swoich produktów',
-        edit_title: 'Edytuj kategorię',
+        edit_category: 'Edytuj kategorię',
+        edit_title: 'Edytuj nazwę',
         edit_desc: 'Edytuj krótki opis kategorii (opcjonalne)',
         edit_thumbnail: 'Edytuj zdjęcie kategorii',
         edit_on_homepage:
@@ -79,6 +80,22 @@ export const pl = {
           'Usunięte zostaną również powiązane zdjęcia a produkty zostaną z nieprzypisaną kategorią',
         yes_delete: 'Tak usuń',
         no_keep: 'Pozostaw kategorię',
+      },
+      products: {
+        title: 'Edytuj produkty',
+        edit_product: 'Edytuj produkt',
+        edit_title: 'Edytuj nazwę produktu',
+        edit_desc: 'Edytuj opis produktu',
+        edit_thumbnail: 'Edytuj zdjęcie produktu',
+        select_category: 'Wybierz kategorię produktu',
+        add_new: 'Dodaj nowy produkt',
+        delete_product: 'Usuń produkt',
+        delete_product_confirmation: 'Na pewno chcesz usunąć wybrany produkt?',
+        delete_product_confirmation_body:
+          'Usunięte zostaną również powiązane zdjęcia',
+        yes_delete: 'Tak usuń',
+        no_keep: 'Pozostaw produkt',
+        selected_category: 'Należy do kategorii: {categoryName}',
       },
     },
   },
