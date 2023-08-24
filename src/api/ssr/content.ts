@@ -2,8 +2,6 @@ import { cache } from 'react';
 import { createSSRClient } from './apiClient';
 import { RowType } from '..';
 
-export const revalidate = 3600; // revalidate the data at most every hour
-
 export const getAllContents = cache(async () => {
   const apiClient = createSSRClient();
 

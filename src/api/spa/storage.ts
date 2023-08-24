@@ -52,3 +52,18 @@ export const storeImage = async (
     .select();
   return images?.[0];
 };
+
+export const deleteImageById = async (imageId: string) => {
+  const apiClient = createSPAClient();
+
+  const { data: imageToDelete } = await apiClient
+    .from('images')
+    .select()
+    .eq('id', imageId)
+    .single();
+
+  if (!imageToDelete?.url) return null;
+
+  await deleteStoredFile(imageToDelete.url);
+  return apiClient.from('images').delete().eq('id', imageId);
+};

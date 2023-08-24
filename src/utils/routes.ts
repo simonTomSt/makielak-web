@@ -9,5 +9,7 @@ export enum Routes {
   Dashboard = '/admin',
   EditHomePage = '/admin/edit/home',
   EditContactPage = '/admin/edit/contact',
+  EditCategories = '/admin/edit/categories',
+  EditProducts = '/admin/edit/products',
   DashboardHelp = '/admin/help',
 }

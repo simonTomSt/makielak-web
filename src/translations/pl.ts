@@ -9,7 +9,7 @@ export const pl = {
       edit_offer: 'Edycja oferty',
       products: 'Produkty',
       categories: 'Kategorie produktów',
-      pages_edit: 'Edycja stron',
+      pages_edit: 'Edycja treści',
       edit_home: 'Strona główna',
       edit_contact: 'Kontakt',
     },
@@ -44,7 +44,9 @@ export const pl = {
     edit: {
       save: 'Zapisz',
       saved_successfully: 'Zapisano zmianę',
+      deleted_successfully: 'Poprawnie usunieto',
       could_not_save: 'Nie udało się zapisać, spróbuj ponownie później',
+      could_not_delete: 'Nie udało się usunąc, spróbuj ponownie później',
       upload_image: 'Klinkij aby wybrać zdjęcie',
       home: {
         title: 'Edycja strony głównej',
@@ -61,6 +63,22 @@ export const pl = {
           item_desc: 'Opis usługi',
           item_illustration: 'Ilustracja usługi (obrazek obok tekstu):',
         },
+      },
+      categories: {
+        title: 'Edytuj kategorie swoich produktów',
+        edit_title: 'Edytuj kategorię',
+        edit_desc: 'Edytuj krótki opis kategorii (opcjonalne)',
+        edit_thumbnail: 'Edytuj zdjęcie kategorii',
+        edit_on_homepage:
+          'Pokazywać na stronie głównej? (zaleca się maks. 6 kategorii)',
+        add_new: 'Dodaj nową kategorię',
+        delete_category: 'Usuń kategorię',
+        delete_category_confirmation:
+          'Na pewno chcesz usunąć wybrana kategorię?',
+        delete_category_confirmation_body:
+          'Usunięte zostaną również powiązane zdjęcia a produkty zostaną z nieprzypisaną kategorią',
+        yes_delete: 'Tak usuń',
+        no_keep: 'Pozostaw kategorię',
       },
     },
   },

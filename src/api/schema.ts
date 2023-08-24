@@ -20,7 +20,7 @@ export interface Database {
         Insert: {
           background_image?: string | null
           description?: string | null
-          id: string
+          id?: string
           name?: string | null
           thumb_image?: string | null
         }
@@ -31,7 +31,20 @@ export interface Database {
           name?: string | null
           thumb_image?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "categories_background_image_fkey"
+            columns: ["background_image"]
+            referencedRelation: "images"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "categories_thumb_image_fkey"
+            columns: ["thumb_image"]
+            referencedRelation: "images"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       content: {
         Row: {
@@ -59,19 +72,19 @@ export interface Database {
           created_at: string | null
           id: string
           image: string | null
-          key: string | null
+          key: string
         }
         Insert: {
           created_at?: string | null
           id?: string
           image?: string | null
-          key?: string | null
+          key: string
         }
         Update: {
           created_at?: string | null
           id?: string
           image?: string | null
-          key?: string | null
+          key?: string
         }
         Relationships: [
           {
@@ -105,18 +118,21 @@ export interface Database {
           category_id: string | null
           description: string | null
           id: string
+          image: string | null
           name: string | null
         }
         Insert: {
           category_id?: string | null
           description?: string | null
           id: string
+          image?: string | null
           name?: string | null
         }
         Update: {
           category_id?: string | null
           description?: string | null
           id?: string
+          image?: string | null
           name?: string | null
         }
         Relationships: [
@@ -124,6 +140,12 @@ export interface Database {
             foreignKeyName: "products_category_id_fkey"
             columns: ["category_id"]
             referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "products_image_fkey"
+            columns: ["image"]
+            referencedRelation: "images"
             referencedColumns: ["id"]
           }
         ]
