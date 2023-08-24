@@ -18,6 +18,7 @@ export const getCategoryById = async (id: string) => {
 
 export const updateCategory = async ({
   id,
+  on_home,
   description,
   name,
 }: Omit<RowType<'categories'>, 'thumb_image' | 'background_image'>) => {
@@ -27,7 +28,7 @@ export const updateCategory = async ({
 
   return apiClient
     .from('categories')
-    .update({ description, name })
+    .update({ description, name, on_home })
     .eq('id', id);
 };
 

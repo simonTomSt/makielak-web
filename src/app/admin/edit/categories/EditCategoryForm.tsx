@@ -13,6 +13,7 @@ import {
   DialogBody,
   DialogFooter,
   DialogHeader,
+  Checkbox,
 } from '@/components';
 import { useMutation } from '@/utils';
 import { t } from '@/translations';
@@ -22,7 +23,7 @@ import {
   updateCategory,
 } from '@/api/spa';
 import { RowType } from '@/api';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 type EditCategoryFormProps = {
   category: RowType<'categories'>;
@@ -38,6 +39,7 @@ const EditCategoryForm = ({
   category,
   categoryThumbImage,
 }: EditCategoryFormProps) => {
+  const homePageCheckboxID = useId();
   const router = useRouter();
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
@@ -90,7 +92,19 @@ const EditCategoryForm = ({
           height={100}
         />
 
-        <div className='flex justify-between'>
+        <div className='mt-3'>
+          <Checkbox
+            id={homePageCheckboxID}
+            label={
+              <Typography variant='h6'>
+                {t.admin.edit.categories.edit_on_homepage}
+              </Typography>
+            }
+            ripple={true}
+            name='on_home'
+            defaultChecked={!!category.on_home}
+          />
+
           <FileUpload
             label={t.admin.edit.categories.edit_thumbnail}
             initialImage={categoryThumbImage?.url || undefined}

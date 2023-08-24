@@ -15,6 +15,7 @@ export interface Database {
           description: string | null
           id: string
           name: string | null
+          on_home: boolean
           thumb_image: string | null
         }
         Insert: {
@@ -22,6 +23,7 @@ export interface Database {
           description?: string | null
           id?: string
           name?: string | null
+          on_home?: boolean
           thumb_image?: string | null
         }
         Update: {
@@ -29,6 +31,7 @@ export interface Database {
           description?: string | null
           id?: string
           name?: string | null
+          on_home?: boolean
           thumb_image?: string | null
         }
         Relationships: [
