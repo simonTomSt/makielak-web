@@ -24,8 +24,6 @@ export const updateCategory = async ({
 }: Omit<RowType<'categories'>, 'thumb_image' | 'background_image'>) => {
   const apiClient = createSPAClient();
 
-  console.log(id, description, name);
-
   return apiClient
     .from('categories')
     .update({ description, name, on_home })

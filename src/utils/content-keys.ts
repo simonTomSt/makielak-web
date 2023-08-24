@@ -27,4 +27,8 @@ export enum ContentImagesKey {
   HomeService1 = 'HomeService1',
   HomeService2 = 'HomeService2',
   HomeService3 = 'HomeService3',
+  AboutUs1 = 'AboutUs1',
+  AboutUs2 = 'AboutUs2',
+  AboutUs3 = 'AboutUs3',
+  AboutUs4 = 'AboutUs4',
 }
