@@ -49,6 +49,40 @@ export interface Database {
           }
         ]
       }
+      certificates: {
+        Row: {
+          created_at: string
+          id: string
+          image: string | null
+          name: string | null
+          pdf_url: string | null
+          type: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image?: string | null
+          name?: string | null
+          pdf_url?: string | null
+          type?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image?: string | null
+          name?: string | null
+          pdf_url?: string | null
+          type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "certificates_image_fkey"
+            columns: ["image"]
+            referencedRelation: "images"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       content: {
         Row: {
           content: string | null

@@ -4,7 +4,7 @@ import {
   Form,
   Button,
   Input,
-  FileUpload,
+  ImageUpload,
   Typography,
   toast,
   Spinner,
@@ -83,7 +83,7 @@ const EditServiceItemForm = ({
         </Button>
       </Form>
 
-      <FileUpload
+      <ImageUpload
         key={index}
         label={t.admin.edit.home.services.item_illustration}
         initialImage={image.url}

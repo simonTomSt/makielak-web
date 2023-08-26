@@ -88,7 +88,7 @@ export default function DashboardSidebar() {
 
         <hr className='my-2 border-blue-gray-50' />
         <Link href={Routes.DashboardHelp}>
-          <ListItem onClick={handleLogout}>
+          <ListItem>
             <ListItemPrefix>
               <InformationCircleIcon className='h-5 w-5' />
             </ListItemPrefix>

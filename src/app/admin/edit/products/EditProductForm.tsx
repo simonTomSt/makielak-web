@@ -5,7 +5,7 @@ import {
   Form,
   Button,
   Input,
-  FileUpload,
+  ImageUpload,
   Typography,
   toast,
   Spinner,
@@ -97,7 +97,7 @@ const EditProductForm = ({
         />
 
         <div className='flex justify-between'>
-          <FileUpload
+          <ImageUpload
             label={t.admin.edit.products.edit_thumbnail}
             initialImage={productImage?.url || undefined}
             onFileSelect={handleThumbImageUpload}

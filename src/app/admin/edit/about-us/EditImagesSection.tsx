@@ -1,7 +1,7 @@
 'use client';
 import { RowType } from '@/api';
 import { saveContentImage } from '@/api/spa';
-import { Card, FileUpload, Typography, toast } from '@/components';
+import { Card, ImageUpload, Typography, toast } from '@/components';
 import { t } from '@/translations';
 import { ContentImagesKey, useMutation } from '@/utils';
 
@@ -35,7 +35,7 @@ const EditImagesSection = ({
 
       <div className='flex justify-between'>
         {imagesKeys.map((key, index) => (
-          <FileUpload
+          <ImageUpload
             key={key}
             label={`${t.admin.edit.about_us.edit_image} ${index + 1}`}
             initialImage={contentImages[key]}

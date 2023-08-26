@@ -67,3 +67,11 @@ export const deleteImageById = async (imageId: string) => {
   await deleteStoredFile(imageToDelete.url);
   return apiClient.from('images').delete().eq('id', imageId);
 };
+
+export const storePDF = async (pdfFile: File, existingPdf?: string) => {
+  if (existingPdf) {
+    return updateStoredFile(existingPdf, pdfFile);
+  }
+
+  return storeFile(pdfFile);
+};

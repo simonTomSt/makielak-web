@@ -5,7 +5,7 @@ import {
   Form,
   Button,
   Input,
-  FileUpload,
+  ImageUpload,
   Typography,
   toast,
   Spinner,
@@ -105,7 +105,7 @@ const EditCategoryForm = ({
             defaultChecked={!!category.on_home}
           />
 
-          <FileUpload
+          <ImageUpload
             label={t.admin.edit.categories.edit_thumbnail}
             initialImage={categoryThumbImage?.url || undefined}
             onFileSelect={handleThumbImageUpload}

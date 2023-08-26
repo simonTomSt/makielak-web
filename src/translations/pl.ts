@@ -122,6 +122,22 @@ export const pl = {
         edit_footer_phone: 'Edytuj kontakt telefoniczny',
         edit_footer_email: 'Edytuj email',
       },
+      certificates: {
+        title: 'Edycja strony - Certyfikaty',
+        edit_certificates: 'Edytuj sekcję "Certfikaty"',
+        edit_declarations: 'Edytuj sekcję "Deklaracja właściwości użytkowych"',
+        edit_title: 'Edytuj tytuł',
+        upload_pdf_file: 'Edytuj plik pdf',
+        upload_thumbnail: 'Edytuj miniaturę (opcjonalne)',
+        add_new: 'Dodaj nowy',
+        delete_certificate: 'Usuń certyfikat/deklaracje',
+        delete_certificate_confirmation:
+          'Na pewno chcesz usunąć wybrany certyfikat/deklaracje?',
+        delete_certificate_confirmation_body:
+          'Usunięte zostaną również powiązane zdjęcia i pliki pdf',
+        yes_delete: 'Tak usuń',
+        no_keep: 'Nie, pozostaw',
+      },
     },
   },
   upload_file: {

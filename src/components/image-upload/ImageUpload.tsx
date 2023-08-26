@@ -1,32 +1,45 @@
 'use client';
 import { ChangeEvent, useState, useId } from 'react';
+import Image from 'next/image';
 import { ArrowUpTrayIcon } from '@heroicons/react/24/solid';
 
 import { t } from '@/translations';
 import { Spinner, Typography } from '@/components';
-import { fileUrlLoader } from '@/utils';
+import { RowType } from '@/api';
+import { storeImage } from '@/api/spa';
 
-type FileUploadProps = {
+type ImageUploadProps = {
   label?: string;
-  initialFileName?: string;
-  onFileSelect: (file: File) => void;
+  initialImage?: string;
+  loading?: boolean;
+  onFileSelect: (image: RowType<'images'>, file: File) => void;
 };
 
-export const FileUpload = ({
+export const ImageUpload = ({
   label,
-  initialFileName,
+  initialImage,
+  loading,
   onFileSelect,
-}: FileUploadProps) => {
+}: ImageUploadProps) => {
   const inputID = useId();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewURL, setPreviewURL] = useState<string | null>(
+    () => initialImage || null
+  );
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
     if (fileList && fileList.length > 0) {
       const selected = fileList[0];
-
       setSelectedFile(selected);
-      onFileSelect(selected);
+
+      const image = await storeImage(selected, previewURL || initialImage);
+
+      if (image) {
+        onFileSelect(image, selected);
+      }
+
+      setPreviewURL(image?.url || null);
     }
   };
 
@@ -52,23 +65,23 @@ export const FileUpload = ({
 
         {selectedFile && (
           <p className='ml-4 text-gray-800'>
-            {t.upload_file.selected_file} {selectedFile.name || initialFileName}
+            {t.upload_file.selected_file} {selectedFile.name}
           </p>
         )}
-      </label>
 
-      {initialFileName && !selectedFile && (
-        <Typography variant='h6' color='blue'>
-          {t.upload_file.selected_file}{' '}
-          <a
-            href={fileUrlLoader(initialFileName)}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            {initialFileName}
-          </a>
-        </Typography>
-      )}
+        {previewURL &&
+          (loading ? (
+            <Spinner />
+          ) : (
+            <Image
+              width={400}
+              height={400}
+              src={previewURL}
+              alt='File preview'
+              className='mt-4 max-w-full h-40 object-contain rounded'
+            />
+          ))}
+      </label>
     </div>
   );
 };
