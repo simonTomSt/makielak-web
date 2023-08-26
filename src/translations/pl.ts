@@ -115,6 +115,13 @@ export const pl = {
         section_images1: 'Edytuj zdjecia strony',
         edit_image: 'Edytuj zdjecie',
       },
+      footer: {
+        title: 'Edycja stopki',
+        edit_footer_title: 'Edytuj tytuł stopki',
+        edit_footer_address: 'Edytuj informacje o adresie',
+        edit_footer_phone: 'Edytuj kontakt telefoniczny',
+        edit_footer_email: 'Edytuj email',
+      },
     },
   },
   upload_file: {
