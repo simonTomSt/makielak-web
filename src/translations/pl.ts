@@ -45,6 +45,11 @@ export const pl = {
     help: 'Pomoc',
   },
   admin: {
+    welcome_title: 'Witaj, Szanowny Administratorze!',
+    welcome_desc:
+      'Cieszymy się, że dołączyłeś do panelu administracyjnego Twojej własnej strony internetowej. Teraz masz możliwość w pełni kształtować treści prezentowane na stronie oraz dostosować ofertę do oczekiwań Twojej widowni. Dzięki temu panelowi możesz edytować istniejące treści, dodawać nowe informacje, a także modyfikować prezentowane produkty czy usługi.',
+    welcome_help:
+      'Jeśli napotkasz jakiekolwiek trudności, nie martw się. W razie pytań, bądź gdy potrzebujesz wsparcia, zachęcamy do odwiedzenia zakładki "Pomoc". Tam znajdziesz niezbędne poradniki i wskazówki, które pomogą Ci w efektywnym korzystaniu z panelu administracyjnego.',
     edit: {
       save: 'Zapisz',
       saved_successfully: 'Zapisano zmianę',
