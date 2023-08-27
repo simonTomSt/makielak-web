@@ -16,11 +16,14 @@ export enum ContentKey {
   Services = 'Services',
   Contact = 'Contact',
   ContactEmail = 'ContactEmail',
-  ContactPhone = 'ContactPhone',
+  ContactPhone1 = 'ContactPhone1',
+  ContactPhone2 = 'ContactPhone2',
   ContactAddress1 = 'ContactAddress1',
   ContactAddress1Name = 'ContactAddress1Name',
+  ContactAddress1Map = 'ContactAddress1Map',
   ContactAddress2 = 'ContactAddress2',
   ContactAddress2Name = 'ContactAddress2Name',
+  ContactAddress2Map = 'ContactAddress2Map',
 }
 
 export enum ContentImagesKey {

@@ -127,6 +127,19 @@ export const pl = {
         edit_footer_phone: 'Edytuj kontakt telefoniczny',
         edit_footer_email: 'Edytuj email',
       },
+      contact: {
+        title: 'Edycja strony - Kontakt',
+        edit_desc: 'Edytuj krótki opis zachęcający do kontaktu',
+        edit_email:
+          'Edytuj email (na ten email wysyłane będą maile z formularza kontaktowego)',
+        address1_title: 'Edytuj informacje o adresie nr. 1',
+        address2_title: 'Edytuj informacje o adresie nr. 2 (opcjonalne)',
+        address_name: 'Nazwa adresu',
+        address: 'Adres',
+        address_map: 'Link do map google',
+        phone1: 'Edytuj telefon nr. 1',
+        phone2: 'Edytuj telefon nr. 2 (opcjonalne)',
+      },
       certificates: {
         title: 'Edycja strony - Certyfikaty',
         edit_certificates: 'Edytuj sekcję "Certfikaty"',
