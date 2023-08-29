@@ -7,8 +7,6 @@ const nextConfig = {
   },
   images: {
     domains: ['rmdjufkjcuqrsfpacxhy.supabase.co'],
-    loader: 'custom',
-    loaderFile: './src/imageLoader.ts',
   },
   async rewrites() {
     return [

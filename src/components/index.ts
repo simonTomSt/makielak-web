@@ -5,4 +5,6 @@ export * from './content-editor/ContentEditor';
 export * from './form/Form';
 export * from './image-upload/ImageUpload';
 export * from './file-upload/FileUpload';
+export * from './logo/Logo';
+export * from 'react-markdown';
 export { ToastContainer, toast } from 'react-toastify';

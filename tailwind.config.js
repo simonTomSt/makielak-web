@@ -1,4 +1,14 @@
 const withMT = require('@material-tailwind/react/utils/withMT');
+const plugin = require('tailwindcss/plugin');
+
+const capitalizeFirst = plugin(function ({ addUtilities }) {
+  const newUtilities = {
+    '.capitalize-first:first-letter': {
+      textTransform: 'uppercase',
+    },
+  };
+  addUtilities(newUtilities, ['responsive', 'hover']);
+});
 
 /** @type {import('tailwindcss').Config} */
 module.exports = withMT({
@@ -8,6 +18,28 @@ module.exports = withMT({
     './node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      xs: '380px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      'lg-max': { max: '1024px' },
+      xl: '1280px',
+      '2xl': '1536px',
+    },
+    fontFamily: {
+      sans: ['Montserrat'],
+    },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+    },
     extend: {
       colors: {
         brand: {
@@ -38,4 +70,5 @@ module.exports = withMT({
       },
     },
   },
+  plugins: [capitalizeFirst],
 });

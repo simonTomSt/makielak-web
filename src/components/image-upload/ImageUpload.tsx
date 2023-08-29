@@ -7,6 +7,7 @@ import { t } from '@/translations';
 import { Spinner, Typography } from '@/components';
 import { RowType } from '@/api';
 import { storeImage } from '@/api/spa';
+import supabaseLoader from '../../imageLoader';
 
 type ImageUploadProps = {
   label?: string;
@@ -79,6 +80,7 @@ export const ImageUpload = ({
               src={previewURL}
               alt='File preview'
               className='mt-4 max-w-full h-40 object-contain rounded'
+              loader={supabaseLoader}
             />
           ))}
       </label>

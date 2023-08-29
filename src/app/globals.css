@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,200;1,700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+*::selection {
+  color: rgba(0, 0, 0, 0.41);
+  background: rgba(180, 52, 201, 0.41);
+}
+
 ::-webkit-scrollbar {
-  width: '10px';
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -12,7 +18,7 @@
 
 ::-webkit-scrollbar-thumb {
   background: #350b3d;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

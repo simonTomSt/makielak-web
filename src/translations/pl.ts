@@ -24,7 +24,7 @@ export const pl = {
     offer_section_btn: 'Zobacz całą oferte',
   },
   footer: {
-    title: 'Wydobywanie żwiru i piasku Mirosław Makielak',
+    copyright: 'Copyright © 2021 www.kruszywa-makielak.pl',
   },
   auth: {
     login: {
