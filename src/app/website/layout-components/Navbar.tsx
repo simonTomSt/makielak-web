@@ -1,34 +1,46 @@
 'use client';
-import React, { Fragment } from 'react';
-import {
-  Navbar as MUINavbar,
-  Collapse,
-  Typography,
-  IconButton,
-} from '@/components';
+import React, { Fragment, useState } from 'react';
+import { Typography, IconButton, Logo } from '@/components';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Routes } from '@/utils';
 import { t } from '@/translations';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const navItems = [
   {
     href: Routes.About_Us,
     name: t.routes.about_us,
   },
+  {
+    href: Routes.Offer,
+    name: t.routes.offer,
+  },
+  {
+    href: Routes.Services,
+    name: t.routes.services,
+  },
+  {
+    href: Routes.Certificates,
+    name: t.routes.certificates,
+  },
+  {
+    href: Routes.Contact,
+    name: t.routes.contact,
+  },
 ];
 
 const NavList = () => {
   return (
-    <ul className='my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6'>
+    <ul className='h-full my-2 flex flex-col justify-evenly md:justify-end items-center gap-2 md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-6'>
       {navItems.map(({ href, name }) => (
         <Fragment key={href}>
           <Link href={href}>
             <Typography
               as='li'
-              variant='small'
-              color='blue-gray'
-              className='p-1 font-medium'
+              variant='lead'
+              color='black'
+              className='p-1 text-2xl md:text-xl capitalize-first font-medium'
             >
               {name}
             </Typography>
@@ -40,50 +52,49 @@ const NavList = () => {
 };
 
 const Navbar = () => {
-  const [openNav, setOpenNav] = React.useState(false);
-
-  const handleWindowResize = () =>
-    window.innerWidth >= 960 && setOpenNav(false);
-
-  React.useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const conditionalNavbarStyles = isNavOpen
+    ? 'fixed bg-white'
+    : 'bg-transparent static';
 
   return (
-    <MUINavbar className='mx-auto max-w-screen-xl px-6 py-3'>
-      <div className='flex items-center justify-between text-blue-gray-900'>
-        <Typography
-          as='a'
-          href='#'
-          variant='h6'
-          className='mr-4 cursor-pointer py-1.5'
-        >
-          Material Tailwind
-        </Typography>
-        <div className='hidden lg:block'>
-          <NavList />
+    <>
+      <nav
+        className={`container mx-auto max-w-screen-xl shadow-none h-[100px] flex items-center justify-between w-full z-50 ${conditionalNavbarStyles}`}
+      >
+        <div className='flex items-center justify-between w-full'>
+          <Logo />
+          <div className='hidden md:block'>
+            <NavList />
+          </div>
+          <IconButton
+            size='lg'
+            variant='text'
+            color='gray'
+            className='rounded-full md:hidden mt-5 p-8'
+            aria-label='menu'
+            onClick={() => setIsNavOpen(!isNavOpen)}
+          >
+            {isNavOpen ? (
+              <XMarkIcon width={40} height={40} color='black' />
+            ) : (
+              <Bars3Icon width={40} height={40} color='black' />
+            )}
+          </IconButton>
+
+          <motion.div
+            animate={{ left: isNavOpen ? 0 : '-100%' }}
+            className={`fixed -left-full right-0 bottom-0 top-[100px] w-full bg-white z-50 transition transition-all-400 ${
+              !isNavOpen && 'hidden left-0'
+            }`}
+          >
+            <NavList />
+          </motion.div>
         </div>
-        <IconButton
-          variant='text'
-          className='ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden'
-          ripple={false}
-          onClick={() => setOpenNav(!openNav)}
-        >
-          {openNav ? (
-            <XMarkIcon className='h-6 w-6' strokeWidth={2} />
-          ) : (
-            <Bars3Icon className='h-6 w-6' strokeWidth={2} />
-          )}
-        </IconButton>
-      </div>
-      <Collapse open={openNav}>
-        <NavList />
-      </Collapse>
-    </MUINavbar>
+      </nav>
+
+      {isNavOpen && <div className='w-full h-[100px]' />}
+    </>
   );
 };
 

@@ -120,7 +120,7 @@ const Footer = ({ title, email, phone, address }: FooterProps) => {
         </div>
       </div>
 
-      <div className='bg-brand-purple py-[26px] mx-auto text-center border border-brand-purple-light bg-opacity-90'>
+      <div className='bg-brand-purple py-[26px] mx-auto text-center border-t border-brand-purple-light opacity-70'>
         <div className='container mx-auto text-center'>
           <Typography variant='small' className='text-xs'>
             {t.footer.copyright}
